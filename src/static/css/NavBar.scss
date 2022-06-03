@@ -1,0 +1,17 @@
+@import "variables";
+
+$test: #000;
+
+.NavBar{
+    background-color: $dark900;
+    color: $white;
+
+    display: flex;
+    padding: 16px;
+    font-size: 14px;
+    align-items: center;
+
+    .auth-div{
+        display: flex;
+    }
+}
