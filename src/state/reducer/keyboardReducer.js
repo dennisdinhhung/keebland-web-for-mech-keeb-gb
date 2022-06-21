@@ -13,10 +13,7 @@ export const initialState = {
         endDate: '',
         basePrice: '',
 
-        vendors: {
-            US: {},
-            CN: {}
-        },
+        vendors: {},
         geekhack: ''
     },
     

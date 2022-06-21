@@ -1,4 +1,4 @@
-import { collection, connectFirestoreEmulator, getDocs } from "firebase/firestore"
+import { collection, getDocs } from "firebase/firestore"
 import { db } from "../../utils/firebase-config"
 
 export const ACTIONS = {
@@ -88,8 +88,6 @@ export const getKeyboardData = () => {
             item.endDate = item.endDate.toDate()
             item.timeCreated = item.timeCreated.toDate()
         })
-
-        console.log(fullData, 'test')
 
         dispatch(setKeyboardsData(fullData))
     }
