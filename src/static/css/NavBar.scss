@@ -1,17 +1,61 @@
 @import "variables";
 
-$test: #000;
-
 .NavBar{
     background-color: $dark900;
     color: $white;
 
+    font-family: 'Montserrat';
+
     display: flex;
+    justify-content: space-between;
+
     padding: 16px;
-    font-size: 14px;
+    font-size: 20px;
     align-items: center;
+    width: 100%;
+
+    // position: fixed;
+    // z-index: 2;
+
+    
+
+    .logo{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        
+        .icon{
+            font-size: 20px;
+        }
+    }
 
     .auth-div{
         display: flex;
+
+        button{
+            background-color: transparent;
+            color: $white;
+            border: none;
+        }
+
+        .btn-search{
+            font-size: 24px;
+
+            display: flex;
+            align-items: center;
+
+            cursor: pointer;
+        }
+
+        .btn-text{
+            font-size: 16px;
+            font-family: 'Montserrat';
+            margin: 0px 5px;
+            cursor: pointer;
+
+            &:hover{
+                opacity: 80%;
+            }
+        }
     }
 }

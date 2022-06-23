@@ -1,0 +1,47 @@
+@import 'variables';
+
+.OutletCommon{
+    margin-left: 175px;
+    padding: 20px;
+    color: $white;
+
+    .title{
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .list-item{
+        display: grid;
+        column-gap: 10px;
+        row-gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+
+        .item{
+            background-color: $dark500;
+            border-radius: 10px;
+
+            .img{
+                object-fit: cover;
+                width: 100%;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+            
+            .info {
+                padding: 10px;
+
+                .tags{
+                    display: flex;
+                }
+                
+                .row-info{
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+
+        }
+
+        
+    }
+}

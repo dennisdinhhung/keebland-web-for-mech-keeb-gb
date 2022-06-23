@@ -3,7 +3,11 @@ import React from 'react'
 function Keycaps() {
     //TODO: Show all keycaps items
     return (
-        <div>Keycaps</div>
+        <div className='Keycaps OutletCommon'>
+            <div className="title">
+                Keycaps
+        </div>
+        </div>
     )
 }
 

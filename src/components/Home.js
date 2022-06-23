@@ -5,8 +5,10 @@ function Home() {
         // Get all categories from the database and show them in "end date" order
 
     return (
-        <div className='Home'>
-            Home
+        <div className='Home OutletCommon'>
+            <div className="title">
+                Home
+            </div>
         </div>
     )
 }

@@ -35,11 +35,10 @@ function AddKeyboard() {
       vendors: {},
       geekhack: ''
     }))
-
   }
 
   return (
-    <div className='AddKeyboard'>
+    <div className='AddKeyboard OutletCommon'>
       <div className="title">Add Keyboards</div>
       <form action="">
         <div className="input-title">Name</div>

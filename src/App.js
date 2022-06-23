@@ -1,4 +1,3 @@
-import './static/css/App.css';
 import Container from './components/Container';
 
 function App() {

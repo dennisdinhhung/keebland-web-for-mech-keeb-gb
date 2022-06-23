@@ -2,7 +2,11 @@ import React from 'react'
 
 function About() {
   return (
-    <div>About</div>
+    <div className='About OutletCommon'>
+      <div className="title">
+        About
+      </div>
+    </div>
   )
 }
 

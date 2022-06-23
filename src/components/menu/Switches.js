@@ -3,7 +3,11 @@ import React from 'react'
 function Switches() {
     //TODO: Show all switches items
     return (
-        <div>Switches</div>
+        <div className='Switches OutletCommon'>
+            <div className="title">
+                Switches
+            </div>
+        </div>
     )
 }
 
