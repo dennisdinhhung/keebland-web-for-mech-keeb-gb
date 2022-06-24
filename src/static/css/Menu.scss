@@ -26,6 +26,7 @@
         font-size: 16px;
         
         cursor: pointer;
+        transition: 0.3s;
 
         &:hover{
             background-color: $dark700;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getKeyboardData } from "../../state/reducer/action";
+import { BsChevronDoubleRight } from 'react-icons/bs'
 import '../../static/css/OutletCommon.scss'
 
 function Keyboard() {
@@ -23,7 +24,17 @@ function Keyboard() {
     setLoading(false);
   }, []);
 
-  console.log(keyboardData, "data");
+  const daysLeft = (endDate) => {
+    const currentDate = new Date()
+    const diff = endDate.getTime() - currentDate.getTime();
+
+    if (diff <= 0){
+      return 'Ended'
+    }
+    
+    const diffInDays = Number((diff / (1000 * 3600 * 24)).toFixed(0));
+    return diffInDays
+  }
 
   return (
     <div className="Keyboard OutletCommon">
@@ -50,20 +61,16 @@ function Keyboard() {
             <div
               className="item"
               key={index}>
-              <img src="https://preview.redd.it/bjp4z4yqb2w81.png?width=2560&format=png&auto=webp&s=37f8d85f17e01844e49aa476c9c70792edf5fe1f" alt="img here"
-                className="img" />
+              <img 
+              src="https://preview.redd.it/bjp4z4yqb2w81.png?width=2560&format=png&auto=webp&s=37f8d85f17e01844e49aa476c9c70792edf5fe1f" alt="img here"
+              className="img" />
 
               <div className="info">
                 <div className="name">{item.name}</div>
 
                 <div className="tags">
-                  {item.tags.map((inner, index) => (
-                    <div
-                      className="tag"
-                      key={index}>
-                      {inner}
-                    </div>
-                  ))}
+                  <div className="tag">{item.tag.status}</div>
+                  <div className="tag">{item.tag.type}</div>
                 </div>
 
 
@@ -92,10 +99,15 @@ function Keyboard() {
                   <div className="price">${item.basePrice}</div>
                 </div>
 
-                <button className="see-more">See more</button>
+                <button 
+                  className="see-more"
+                  onClick={() => {redirect(item.id)}}>
+                  See more
+                  <BsChevronDoubleRight className="icon"/>
+                </button>
 
                 <div className="div-days-left">
-                  Days left: {/* //TODO calculate days here */}
+                  Days left: {daysLeft(item.endDate)}
                 </div>
               </div>
             </div>

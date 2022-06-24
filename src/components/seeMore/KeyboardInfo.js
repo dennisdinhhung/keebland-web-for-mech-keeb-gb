@@ -4,12 +4,16 @@ import { useParams } from 'react-router-dom'
 function KeyboardInfo() {
     const params = useParams();
 
-    console.log(params)
+    const { keyboardId } = params
+
+    console.log(keyboardId)
+    
     return (
-        <div className='KeyboardInfo'>
+        <div className='KeyboardInfo OutletCommon'>
             <div className="title">
                 {//TODO: insert title here
                 }
+                {keyboardId}
             </div>
 
             <div className="inf">

@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setKeyboardState } from '../../state/reducer/action';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../utils/firebase-config';
+import { statusList } from '../statusList';
+import { typeList } from '../typeList';
+import '../../static/css/AddInfo.scss'
 
 function AddKeyboard() {
   const state = useSelector((state) => state.keyboard)
@@ -19,15 +22,20 @@ function AddKeyboard() {
 
     const collectionRef = collection(db, 'keyboards')
 
-    // await addDoc(collectionRef, keyboard)
+    //TODO: convert all date values
+
+    await addDoc(collectionRef, keyboard)
 
     dispatch(setKeyboardState({
       timeCreated: '',
 
       seflID: '',
-      imgID: [],
+      imgUrls: '',
       name: '',
-      tags: [],
+      tag: {
+        status: '',
+        type: ''
+      },
       startDate: '',
       endDate: '',
       basePrice: '',
@@ -35,10 +43,12 @@ function AddKeyboard() {
       vendors: {},
       geekhack: ''
     }))
+
+    redirect('/keyboard')
   }
 
   return (
-    <div className='AddKeyboard OutletCommon'>
+    <div className='Add OutletCommon'>
       <div className="title">Add Keyboards</div>
       <form action="">
         <div className="input-title">Name</div>
@@ -55,35 +65,111 @@ function AddKeyboard() {
           }}
         />
 
+        <div className="input-title">
+          Image URLs
+        </div>
+
+        <div className="input">
+          <input
+            type="url"
+            onChange={(e) => {
+              dispatch(
+                setKeyboardState({
+                  ...keyboard,
+                  imgUrls: e.target.value
+                })
+              )
+            }} />
+        </div>
+
         <div className="input-title">Tags</div>
         {//* multi choice
         }
+
         <div className="title-tag">
           Status
         </div>
 
-        {/*// TODO: status choices here (ex: live, gb, in stock) */}
+        <select
+          className='input'
+          value={keyboard.tag.status}
+          onChange={(e) => {
+            dispatch(
+              setKeyboardState(
+                {
+                  ...keyboard,
+                  tag: {
+                    ...keyboard.tag,
+                    status: e.target.value
+                  }
+                }
+              )
+            )
+          }}>
+          <option value="" disabled>Choose status</option>
+          {statusList.map((item, index) => (
+            <option key={index} value={item}>{item}</option>
+          ))}
+        </select>
 
         <div className="title-type">
           Type
         </div>
 
-        {/* //TODO: type choices here (ex: keyboard, keycaps) */}
+        <select
+          className='input'
+          value={keyboard.tag.type}
+          onChange={(e) => {
+            dispatch(
+              setKeyboardState(
+                {
+                  ...keyboard,
+                  tag: {
+                    ...keyboard.tag,
+                    type: e.target.value
+                  }
+                }
+              )
+            )
+          }}>
+          <option value="" disabled>Choose type</option>
+          {typeList.map((item, index) => (
+            <option key={index} value={item}>{item}</option>
+          ))}
+        </select>
 
         <div className="input-title">Start Date</div>
         {//TODO: Date time
         }
         <input
-          type="text"
+          type="date"
           className='input'
+          value={keyboard.startDate}
+          onChange={(e) => {
+            dispatch(
+              setKeyboardState({
+                ...keyboard,
+                startDate: e.target.value
+              })
+            )
+          }}
         />
 
         <div className="input-title">End Date</div>
         {//TODO: Date time
         }
         <input
-          type="text"
+          type="date"
           className='input'
+          value={keyboard.endDate}
+          onChange={(e) => {
+            dispatch(
+              setKeyboardState({
+                ...keyboard,
+                endDate: e.target.value
+              })
+            )
+          }}
         />
 
         <div className="input-title">Base Price</div>
@@ -112,7 +198,7 @@ function AddKeyboard() {
 
         <div className="input-title">Geekhack link</div>
         <input
-          type="text"
+          type="url"
           className='input'
           value={keyboard.geekhack}
           onChange={(e) => {

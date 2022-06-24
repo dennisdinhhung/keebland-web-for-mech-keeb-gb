@@ -1,4 +1,4 @@
-export const status = [
+export const statusList = [
     "Live GB",
     "In Stock",
     "Upcoming",

@@ -6,9 +6,12 @@ export const initialState = {
         timeCreated: '',
 
         seflID: '',
-        imgID: [],
+        imgUrls: '',
         name: '',
-        tags: [],
+        tag: {
+            status: '',
+            type: ''
+        },
         startDate: '',
         endDate: '',
         basePrice: '',

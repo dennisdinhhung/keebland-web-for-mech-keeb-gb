@@ -17,7 +17,7 @@
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 
         .item{
-            background-color: $dark500;
+            background-color: $dark700;
             border-radius: 10px;
 
             .img{
@@ -30,13 +30,57 @@
             .info {
                 padding: 10px;
 
+                .name{
+                    font-size: 20px;
+                    font-weight: 600;
+                    margin-bottom: 10px;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid white;
+                }
+
                 .tags{
                     display: flex;
+                    margin-bottom: 5px;
+
+                    .tag{
+                        font-size: 13px;
+                        background-color: $white;
+                        color: $dark900;
+                        border-radius: 20px;
+                        margin-right: 5px;
+                        padding: 5px 10px;
+                    }
                 }
                 
                 .row-info{
                     display: flex;
                     justify-content: space-between;
+                }
+
+                .see-more{
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+                    border: none;
+                    background-color: transparent;
+                    color: $white;
+                    font-size: 15px;
+
+                    margin: 5px 0px;
+                    padding: 5px;
+                    border-radius: 5px;
+
+                    cursor: pointer;
+
+                    margin-left: auto;
+
+                    transition: 0.3s;
+                    
+                    &:hover{
+                        background-color: $white;
+                        color: $dark900;
+                    }
                 }
             }
 
