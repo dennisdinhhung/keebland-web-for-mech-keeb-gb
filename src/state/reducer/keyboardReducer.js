@@ -5,8 +5,8 @@ export const initialState = {
     keyboard: {
         timeCreated: '',
 
-        seflID: '',
-        imgUrls: '',
+        selfID: '',
+        imgUrls: [],
         name: '',
         tag: {
             status: '',
@@ -16,7 +16,7 @@ export const initialState = {
         endDate: '',
         basePrice: '',
 
-        vendors: {},
+        vendors: [],
         geekhack: ''
     },
     
