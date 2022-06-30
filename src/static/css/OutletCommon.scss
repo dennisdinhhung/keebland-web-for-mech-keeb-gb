@@ -1,91 +1,121 @@
-@import 'variables';
+@import "variables";
 
-.OutletCommon{
-    margin-left: 175px;
-    padding: 20px;
-    color: $white;
+.OutletCommon {
+  margin-left: 175px;
+  padding: 20px;
+  color: $white;
 
-    .title{
-        font-size: 20px;
-        margin-bottom: 20px;
+  .title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .loading{
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+  }
+
+  .loading:before {
+    content: "";
+    display: block;
+    height: 50px;
+    width: 50px;
+    -webkit-animation: spin 0.5s infinite linear;
+    animation: spin 0.5s infinite linear;
+    border: 6px $white solid;
+    border-left-color: $dark700;
+    border-radius: 100%;
+  }
+
+  @-webkit-keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
     }
+  }
 
-    .list-item{
-        display: grid;
-        column-gap: 10px;
-        row-gap: 20px;
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  @keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
 
-        .item{
-            background-color: $dark700;
-            border-radius: 10px;
+  .list-item {
+    display: grid;
+    column-gap: 10px;
+    row-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 
-            .img{
-                object-fit: cover;
-                width: 100%;
-                border-top-left-radius: 10px;
-                border-top-right-radius: 10px;
-            }
-            
-            .info {
-                padding: 10px;
+    .item {
+      background-color: $dark700;
+      border-radius: 10px;
 
-                .name{
-                    font-size: 20px;
-                    font-weight: 600;
-                    margin-bottom: 10px;
-                    padding-bottom: 10px;
-                    border-bottom: 1px solid white;
-                }
+      .img {
+        object-fit: cover;
+        height: 150px;
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
 
-                .tags{
-                    display: flex;
-                    margin-bottom: 5px;
+      .info {
+        padding: 10px;
 
-                    .tag{
-                        font-size: 13px;
-                        background-color: $white;
-                        color: $dark900;
-                        border-radius: 20px;
-                        margin-right: 5px;
-                        padding: 5px 10px;
-                    }
-                }
-                
-                .row-info{
-                    display: flex;
-                    justify-content: space-between;
-                }
-
-                .see-more{
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-end;
-
-                    border: none;
-                    background-color: transparent;
-                    color: $white;
-                    font-size: 15px;
-
-                    margin: 5px 0px;
-                    padding: 5px;
-                    border-radius: 5px;
-
-                    cursor: pointer;
-
-                    margin-left: auto;
-
-                    transition: 0.3s;
-                    
-                    &:hover{
-                        background-color: $white;
-                        color: $dark900;
-                    }
-                }
-            }
-
+        .name {
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 10px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid white;
         }
 
-        
+        .tags {
+          display: flex;
+          margin-bottom: 5px;
+
+          .tag {
+            font-size: 13px;
+            background-color: $white;
+            color: $dark900;
+            border-radius: 20px;
+            margin-right: 5px;
+            padding: 5px 10px;
+          }
+        }
+
+        .row-info {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .see-more {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+
+          border: none;
+          background-color: transparent;
+          color: $white;
+          font-size: 15px;
+
+          margin: 5px 0px;
+          padding: 5px;
+          border-radius: 5px;
+
+          cursor: pointer;
+
+          margin-left: auto;
+
+          transition: 0.3s;
+
+          &:hover {
+            background-color: $white;
+            color: $dark900;
+          }
+        }
+      }
     }
+  }
 }
