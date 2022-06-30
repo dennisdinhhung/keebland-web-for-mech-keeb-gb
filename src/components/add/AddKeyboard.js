@@ -2,12 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { setKeyboardState } from '../../state/reducer/action';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, Timestamp } from 'firebase/firestore';
 import { db } from '../../utils/firebase-config';
 import { statusList } from '../statusList';
 import { typeList } from '../typeList';
 import '../../static/css/AddInfo.scss'
-import { current } from '@reduxjs/toolkit';
 
 function AddKeyboard() {
   const state = useSelector((state) => state.keyboard)
@@ -25,8 +24,6 @@ function AddKeyboard() {
   }
 
   const deleteUrl = (index) => {
-    console.log(index)
-
     const newUrlList = [...keyboard.imgUrls]
     newUrlList.splice(index, 1)
 
@@ -50,13 +47,11 @@ function AddKeyboard() {
           }]
       })
     )
-
-    console.log(keyboard.vendors)
   }
 
   const handleSetVendors = (e, index) => {
     const newList = [...keyboard.vendors]
-    const newObj = {...keyboard.vendors[index], [e.target.name]: e.target.value}
+    const newObj = { ...keyboard.vendors[index], [e.target.name]: e.target.value }
     newList[index] = newObj
     dispatch(
       setKeyboardState({
@@ -78,29 +73,20 @@ function AddKeyboard() {
     )
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     const collectionRef = collection(db, 'keyboards')
 
-    //TODO: convert all date values
+    const fireKeyboard = {...keyboard}
 
-    const currentDate = new Date()
+    fireKeyboard.tag.type = 'keyboard'
+    fireKeyboard.timeCreated = Timestamp.fromDate(new Date())
+    fireKeyboard.startDate = Timestamp.fromDate(new Date(fireKeyboard.startDate))
+    fireKeyboard.endDate = Timestamp.fromDate(new Date(fireKeyboard.endDate))
 
-    dispatch(
-      setKeyboardState({
-        ...keyboard,
-        timeCreated: currentDate.getTime()
-      })
-    )
-
-    await addDoc(collectionRef, keyboard)
+    await addDoc(collectionRef, fireKeyboard)
 
     dispatch(setKeyboardState({
-      timeCreated: '',
-
-      seflID: '',
-      imgUrls: '',
+      imgUrls: [],
       name: '',
       tag: {
         status: '',
@@ -110,7 +96,7 @@ function AddKeyboard() {
       endDate: '',
       basePrice: '',
 
-      vendors: {},
+      vendors: [],
       geekhack: ''
     }))
 
@@ -153,7 +139,6 @@ function AddKeyboard() {
                     imgUrls: newList
                   })
                 )
-                console.log(keyboard.imgUrls, 0)
               }}
             />
             <button onClick={() => deleteUrl(index)}>Delete</button>
@@ -165,10 +150,6 @@ function AddKeyboard() {
           +
         </button>
       </div>
-
-      <div className="input-title">Tags</div>
-      {//* multi choice
-      }
 
       <div className="title-tag">
         Status
@@ -192,32 +173,6 @@ function AddKeyboard() {
         }}>
         <option value="" disabled>Choose status</option>
         {statusList.map((item, index) => (
-          <option key={index} value={item}>{item}</option>
-        ))}
-      </select>
-
-      <div className="title-type">
-        Type
-      </div>
-
-      <select
-        className='input'
-        value={keyboard.tag.type}
-        onChange={(e) => {
-          dispatch(
-            setKeyboardState(
-              {
-                ...keyboard,
-                tag: {
-                  ...keyboard.tag,
-                  type: e.target.value
-                }
-              }
-            )
-          )
-        }}>
-        <option value="" disabled>Choose type</option>
-        {typeList.map((item, index) => (
           <option key={index} value={item}>{item}</option>
         ))}
       </select>
@@ -296,7 +251,7 @@ function AddKeyboard() {
                 value={vendor.url}
                 onChange={(e) => {
                   handleSetVendors(e, index)
-                }}/>
+                }} />
             </div>
             <button onClick={() => deleteVendor(index)}>Delete</button>
           </div>
