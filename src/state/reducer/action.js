@@ -12,7 +12,10 @@ export const ACTIONS = {
     
     SET_KEYBOARD_DATA: 'set-keyboard-data',
     SET_KEYCAPS_DATA: 'set-keycaps-data',
-    SET_SWITCHES_DATA: 'set-switches-data'
+    SET_SWITCHES_DATA: 'set-switches-data',
+    SET_ALL_DATA: 'set-all-data',
+
+    SET_KEYBOARD_INFO: 'set-keyboard-info',
 }
 
 //*SET
@@ -28,6 +31,31 @@ export const setKeycapsState = (payload) => ({
 
 export const setSwitchesState = (payload) => ({
     type: ACTIONS.SET_SWITCHES_STATE,
+    payload
+})
+
+export const setKeyboardsData = (payload) => ({
+    type: ACTIONS.SET_KEYBOARD_DATA,
+    payload
+})
+
+export const setKeycapsData = (payload) => ({
+    type: ACTIONS.SET_KEYCAPS_DATA,
+    payload
+})
+
+export const setSwitchesData = (payload) => ({
+    type: ACTIONS.SET_SWITCHES_DATA,
+    payload
+})
+
+export const setAllData = (payload) => ({
+    type: ACTIONS.SET_ALL_DATA,
+    payload
+})
+
+export const setKeyboardInfo = (payload) => ({
+    type: ACTIONS.SET_KEYBOARD_INFO,
     payload
 })
 
@@ -76,6 +104,53 @@ export const getData = (coll_name) => {
     }
 }
 
+export const getAllData = () => {
+    return async (dispatch) => {
+        //get KB data
+        const kbCollectionRef = collection(db, 'keyboards');
+        const kbData = await getDocs(kbCollectionRef)
+        const kbFullData = kbData.docs.map((doc) => ({...doc.data(), id: doc.id}))
+
+        kbFullData.forEach((item) => {
+            item.startDate = item.startDate.toDate()
+            item.endDate = item.endDate.toDate()
+            item.timeCreated = item.timeCreated.toDate()
+        })
+
+        dispatch(setKeyboardsData(kbFullData))
+
+        //get KC data
+        const kcCollectionRef = collection(db, 'keycaps')
+        const kcData = await getDocs(kcCollectionRef)
+        const kcFullData = kcData.docs.map((doc) => ({...doc.data(), id: doc.id}))
+
+        kcFullData.forEach((item) => {
+            item.startDate = item.startDate.toDate()
+            item.endDate = item.endDate.toDate()
+            item.timeCreated = item.timeCreated.toDate()
+        })
+
+        dispatch(setKeycapsData(kcFullData))
+
+        //get SW data
+        const swCollectionRef = collection(db, 'switches')
+        const swData = await getDocs(swCollectionRef)
+        const swFullData = swData.docs.map((doc) => ({...doc.data(), id: doc.id}))
+
+        swFullData.forEach((item) => {
+            item.startDate = item.startDate.toDate()
+            item.endDate = item.endDate.toDate()
+            item.timeCreated = item.timeCreated.toDate()
+        })
+
+        dispatch(setSwitchesData(swFullData))
+
+        const allData = [...kbFullData, ...kcFullData, ...swFullData]
+        console.log(allData)
+        dispatch(setAllData(allData))
+    }
+}
+
 export const getKeyboardData = () => {
     return async (dispatch) => {
 
@@ -93,7 +168,7 @@ export const getKeyboardData = () => {
     }
 }
 
-export const getKeycaps = () => {
+export const getKeycapsData = () => {
     return async (dispatch) => {
         
         const collectionRef = collection(db, 'keycaps')
@@ -110,7 +185,7 @@ export const getKeycaps = () => {
     }
 }
 
-export const getSwitches = () => {
+export const getSwitchesData = () => {
     return async (dispatch) => {
         
         const collectionRef = collection(db, 'switches')
@@ -126,20 +201,3 @@ export const getSwitches = () => {
         dispatch(setSwitchesData(fullData))
     }
 }
-
-//*SET
-
-export const setKeyboardsData = (payload) => ({
-    type: ACTIONS.SET_KEYBOARD_DATA,
-    payload
-})
-
-export const setKeycapsData = (payload) => ({
-    type: ACTIONS.SET_KEYCAPS_DATA,
-    payload
-})
-
-export const setSwitchesData = (payload) => ({
-    type:   ACTIONS.SET_SWITCHES_DATA,
-    payload
-})

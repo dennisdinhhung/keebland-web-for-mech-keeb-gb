@@ -1,7 +1,7 @@
 export const statusList = [
-    "Live GB",
-    "In Stock",
-    "Upcoming",
+    "live",
+    "in stock",
+    "upcoming",
     "IC",
-    "Ended"
+    "ended"
 ]
