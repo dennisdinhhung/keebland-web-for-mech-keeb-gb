@@ -1,6 +1,9 @@
 import React from 'react'
 import { Route, Routes, BrowserRouter, Outlet } from 'react-router-dom'
 import AddKeyboard from './add/AddKeyboard'
+import AddKeycaps from './add/AddKeycaps'
+import AddSwitches from './add/AddSwitches'
+import EditKeyboard from './edit/EditKeyboard'
 import Home from './Home'
 import About from './menu/About'
 import Keyboard from './menu/Keyboard'
@@ -9,25 +12,44 @@ import Switches from './menu/Switches'
 import NavBar from './NavBar'
 import OutletContainer from './OutletContainer'
 import KeyboardInfo from './seeMore/KeyboardInfo'
+import KeycapsInfo from './seeMore/KeycapsInfo'
+import SwitchesInfo from './seeMore/SwitchesInfo'
 
 function Container() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={
-          <>
-            <NavBar/>
-            <OutletContainer/>
-          </>
+        <Route 
+          path='/' 
+          element={
+            <>
+              <NavBar/>
+              <OutletContainer/>
+            </>
         }>
           <Route index element={<Home/>}/>
-          <Route path='keyboard' element={<Keyboard/>}/>
-          <Route path='keyboard/:keyboardId' element={<KeyboardInfo/>}/>
-          <Route path='keycaps' element={<Keycaps/>}/>
-          <Route path='switches' element={<Switches/>}/>
+          <Route path='keyboard'>
+            <Route index element={<Keyboard/>}/>
+            <Route path='add' element={<AddKeyboard/>}/>
+            <Route path=':keyboardId' element={<KeyboardInfo/>}/>
+            <Route path='edit/:keyboardId' element={<EditKeyboard/>}/>
+          </Route>
+          
+          <Route path='keycaps'>
+            <Route index element={<Keycaps/>}/>
+            <Route path='add' element={<AddKeycaps/>}/>
+            <Route path=':keycapsId' element={<KeycapsInfo/>}/>
+            {/* <Route path='edit/:keycapsId' element={</>}/> */}
+          </Route>
+          
+          <Route path='switches'>
+            <Route index element={<Switches/>}/>
+            <Route path='add' element={<AddSwitches/>}/>
+            <Route path=':switchesId' element={<SwitchesInfo/>}/>
+            {/* <Route path='edit/:switchesId' element={</>}/> */}
+          </Route>
+          
           <Route path='about' element={<About/>}/>
-
-          <Route path='keyboard/add' element={<AddKeyboard/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
