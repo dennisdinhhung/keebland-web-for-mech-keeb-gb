@@ -1,5 +1,5 @@
 export const typeList = [
-    "keyboard",
+    "keyboards",
     "keycaps",
     "switches"
 ]
