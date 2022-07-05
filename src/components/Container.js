@@ -4,6 +4,8 @@ import AddKeyboard from './add/AddKeyboard'
 import AddKeycaps from './add/AddKeycaps'
 import AddSwitches from './add/AddSwitches'
 import EditKeyboard from './edit/EditKeyboard'
+import EditKeycaps from './edit/EditKeycaps'
+import EditSwitches from './edit/EditSwitches'
 import Home from './Home'
 import About from './menu/About'
 import Keyboard from './menu/Keyboard'
@@ -28,7 +30,7 @@ function Container() {
             </>
         }>
           <Route index element={<Home/>}/>
-          <Route path='keyboard'>
+          <Route path='keyboards'>
             <Route index element={<Keyboard/>}/>
             <Route path='add' element={<AddKeyboard/>}/>
             <Route path=':keyboardId' element={<KeyboardInfo/>}/>
@@ -39,14 +41,14 @@ function Container() {
             <Route index element={<Keycaps/>}/>
             <Route path='add' element={<AddKeycaps/>}/>
             <Route path=':keycapsId' element={<KeycapsInfo/>}/>
-            {/* <Route path='edit/:keycapsId' element={</>}/> */}
+            <Route path='edit/:keycapsId' element={<EditKeycaps/>}/>
           </Route>
           
           <Route path='switches'>
             <Route index element={<Switches/>}/>
             <Route path='add' element={<AddSwitches/>}/>
             <Route path=':switchesId' element={<SwitchesInfo/>}/>
-            {/* <Route path='edit/:switchesId' element={</>}/> */}
+            <Route path='edit/:switchesId' element={<EditSwitches/>}/>
           </Route>
           
           <Route path='about' element={<About/>}/>
