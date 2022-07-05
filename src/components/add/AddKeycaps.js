@@ -102,8 +102,6 @@ function AddKeycaps() {
         const collectionRef = collection(db, 'keycaps')
 
         const fireKeycaps = {...keycaps}
-
-        fireKeycaps.tag.type = 'keycaps'
         fireKeycaps.timeCreated = Timestamp.fromDate(new Date())
         fireKeycaps.startDate = Timestamp.fromDate(new Date(fireKeycaps.startDate))
         fireKeycaps.endDate = Timestamp.fromDate(new Date(fireKeycaps.endDate))
@@ -115,7 +113,7 @@ function AddKeycaps() {
             name: '',
             tag: {
                 status: '',
-                type: ''
+                type: 'keycaps'
             },
             startDate: '',
             endDate: '',

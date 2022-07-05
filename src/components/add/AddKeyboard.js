@@ -77,8 +77,6 @@ function AddKeyboard() {
     const collectionRef = collection(db, 'keyboards')
 
     const fireKeyboard = {...keyboard}
-
-    fireKeyboard.tag.type = 'keyboard'
     fireKeyboard.timeCreated = Timestamp.fromDate(new Date())
     fireKeyboard.startDate = Timestamp.fromDate(new Date(fireKeyboard.startDate))
     fireKeyboard.endDate = Timestamp.fromDate(new Date(fireKeyboard.endDate))
@@ -90,7 +88,7 @@ function AddKeyboard() {
       name: '',
       tag: {
         status: '',
-        type: ''
+        type: 'keyboards'
       },
       startDate: '',
       endDate: '',
@@ -100,7 +98,7 @@ function AddKeyboard() {
       geekhack: ''
     }))
 
-    redirect('/keyboard')
+    redirect('/keyboards')
   }
 
   return (
@@ -178,8 +176,7 @@ function AddKeyboard() {
       </select>
 
       <div className="input-title">Start Date</div>
-      {//TODO: Date time
-      }
+
       <input
         type="date"
         className='input'
@@ -195,8 +192,7 @@ function AddKeyboard() {
       />
 
       <div className="input-title">End Date</div>
-      {//TODO: Date time
-      }
+
       <input
         type="date"
         className='input'
@@ -227,8 +223,6 @@ function AddKeyboard() {
 
       <div className="input-title">Vendors</div>
       <div className='vendors'>
-        {// TODO: have an field add button for input region, input vendor's name and input to link to shop
-        }
         {keyboard.vendors.map((vendor, index) => (
           <div className='input-vendor' key={index}>
             <div className="input">
