@@ -28,14 +28,14 @@ function Menu() {
             </button>
 
             <button
-                className={activeBtn === '/keyboard' ? 'active-nav' : 'inactive-nav'}
+                className={activeBtn === '/keyboards' ? 'active-nav' : 'inactive-nav'}
                 onClick={() => {
-                    redirect('keyboard')
+                    redirect('keyboards')
                 }
                 }>
-                {activeBtn === '/keyboard' ? 
-                <FaKeyboard className='menu-icon'/> : <FaRegKeyboard className='menu-icon'/>}
-                Keyboard
+                {activeBtn === '/keyboards' ? 
+                <BsKeyboardFill className='menu-icon'/> : <BsKeyboard className='menu-icon'/>}
+                Keyboards
             </button>
 
             <button
