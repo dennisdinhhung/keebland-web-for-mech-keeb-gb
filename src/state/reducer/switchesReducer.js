@@ -2,13 +2,11 @@ import { ACTIONS } from "./action"
 
 const initialState = {
     switches: {
-        timeCreated: '',
-
         imgUrls: [],
         name: '',
         tag: {
             status: '',
-            type: ''
+            type: 'switches'
         },
         startDate: '',
         endDate: '',
@@ -17,6 +15,7 @@ const initialState = {
         vendors: [],
         geekhack: ''
     },
+    switchesInfo: {},
     switchesData: []
 }
 
@@ -26,6 +25,16 @@ const switchesReducer = (state = initialState, action) => {
             return{
                 ...state,
                 switches: action.payload
+            }
+        case ACTIONS.SET_SWITCHES_DATA:
+            return {
+                ...state,
+                switchesData: action.payload
+            }
+        case ACTIONS.SET_SWITCHES_INFO:
+            return {
+                ...state,
+                switchesInfo: action.payload
             }
         default:
             return state

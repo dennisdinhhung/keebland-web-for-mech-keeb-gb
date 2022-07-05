@@ -4,10 +4,10 @@ const initialState = {
     allData: []
 }
 
-const homeReducer = (state=initialState, action) => {
-    switch (action.type){
+const homeReducer = (state = initialState, action) => {
+    switch (action.type) {
         case ACTIONS.SET_ALL_DATA:
-            return{
+            return {
                 ...state,
                 allData: action.payload
             }

@@ -6,6 +6,7 @@ const initialState = {
         name: '',
         tag: {
             status: '',
+            type: 'keycaps'
         },
         startDate: '',
         endDate: '',
@@ -14,6 +15,7 @@ const initialState = {
         vendors: [],
         geekhack: ''
     },
+    keycapsInfo: {},
     keycapsData: [],   
 }
 
@@ -28,6 +30,11 @@ const keycapsReducer = (state=initialState, action) => {
             return {
                 ...state,
                 keycapsData: action.payload
+            }
+        case ACTIONS.SET_KEYCAPS_INFO:
+            return {
+                ...state,
+                keycapsInfo: action.payload
             }
         default:
             return state

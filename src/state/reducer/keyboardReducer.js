@@ -6,6 +6,7 @@ const initialState = {
         name: '',
         tag: {
             status: '',
+            type: 'keyboards'
         },
         startDate: '',
         endDate: '',
@@ -14,7 +15,7 @@ const initialState = {
         vendors: [],
         geekhack: ''
     },
-    keyboardInfo: {},
+    keyboardInfo: {}, // individual keyboard info
     keyboardData: [],
 }
 

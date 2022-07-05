@@ -16,6 +16,8 @@ export const ACTIONS = {
     SET_ALL_DATA: 'set-all-data',
 
     SET_KEYBOARD_INFO: 'set-keyboard-info',
+    SET_KEYCAPS_INFO: 'set-keycaps-info',
+    SET_SWITCHES_INFO: 'set-switches-info'
 }
 
 //*SET
@@ -59,20 +61,13 @@ export const setKeyboardInfo = (payload) => ({
     payload
 })
 
-//* ADD
-
-export const addKeyboard = (payload) => ({
-    type: ACTIONS.ADD_KEYBOARD,
+export const setKeycapsInfo = (payload) => ({
+    type: ACTIONS.SET_KEYCAPS_INFO,
     payload
 })
 
-export const addKeycaps = (payload) => ({
-    type: ACTIONS.ADD_KEYCAPS,
-    payload
-})
-
-export const addSwitches = (payload) => ({
-    type: ACTIONS.ADD_SWITCHES,
+export const setSwitchesInfo = (payload) => ({
+    type: ACTIONS.SET_SWITCHES_INFO,
     payload
 })
 
@@ -104,7 +99,7 @@ export const getData = (coll_name) => {
     }
 }
 
-export const getAllData = () => {
+export const getAllData = (keyboardData, keycapsData, switchesData) => {
     return async (dispatch) => {
         //get KB data
         const kbCollectionRef = collection(db, 'keyboards');
