@@ -3,17 +3,22 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getSwitchesData } from '../../state/reducer/action'
+import { getSavedEntry, getSwitchesData } from '../../state/reducer/action'
+import { useAuth } from '../../utils/AuthProvider'
 import ListItem from './ListItem'
 
 function Switches() {
-  const state = useSelector((state) => state.switches)
+  const [ switchesState, savedState] = useSelector((state) => [state.switches, state.savedEntry]);
+  const { authUser } = useAuth();
   const redirect = useNavigate()
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true);
-  const { switchesData } = state
+  const { switchesData } = switchesState
+  const { savedEntry } = savedState
 
   useEffect(() => {
+    // dispatch(getSavedEntry(authUser.uid));
+
     if (switchesData.length <= 0) {
       dispatch(getSwitchesData());
     }
@@ -42,7 +47,8 @@ function Switches() {
       </div>
 
       {loading ? <div className="loading"></div> : null}
-      <ListItem data={switchesData}/>
+      
+      <ListItem data={switchesData} savedEntry={savedEntry}/>
     </div>
   )
 }

@@ -14,6 +14,8 @@ export const ACTIONS = {
     SET_KEYCAPS_DATA: 'set-keycaps-data',
     SET_SWITCHES_DATA: 'set-switches-data',
     SET_ALL_DATA: 'set-all-data',
+    SET_SAVED_ENTRY: 'set-saved-entry',
+    SET_ALL_SAVED_ENTRY: 'set-all-saved-entry',
 
     SET_KEYBOARD_INFO: 'set-keyboard-info',
     SET_KEYCAPS_INFO: 'set-keycaps-info',
@@ -53,6 +55,16 @@ export const setSwitchesData = (payload) => ({
 
 export const setAllData = (payload) => ({
     type: ACTIONS.SET_ALL_DATA,
+    payload
+})
+
+export const setSavedEntry = (payload) => ({
+    type: ACTIONS.SET_SAVED_ENTRY,
+    payload
+})
+
+export const setAllSavedEntry = (payload) => ({
+    type: ACTIONS.SET_ALL_SAVED_ENTRY,
     payload
 })
 
@@ -194,5 +206,29 @@ export const getSwitchesData = () => {
         })
 
         dispatch(setSwitchesData(fullData))
+    }
+}
+
+export const getSavedEntry = (uid) => {
+    return async (dispatch) => {
+        const collectionRef = collection(db, 'savedEntry')
+        const data = await getDocs(collectionRef)
+        const fullData = data.docs.map((doc) => ({...doc.data(), id: doc.id}))
+
+        fullData.forEach((item) => {
+            if (item.uid === uid){
+                dispatch(setSavedEntry(item))
+            }
+        })
+    }
+}
+
+export const getAllSavedEntry = () => {
+    return async (dispatch) => {
+        const collectionRef = collection(db, 'savedEntry')
+        const data = await getDocs(collectionRef)
+        const fullData = data.docs.map((doc) => ({...doc.data(), id: doc.id}))
+
+        dispatch(setAllSavedEntry(fullData))
     }
 }

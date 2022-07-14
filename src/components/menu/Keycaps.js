@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getKeycapsData } from '../../state/reducer/action';
+import { getKeycapsData, getSavedEntry } from '../../state/reducer/action';
+import { useAuth } from '../../utils/AuthProvider';
 import ListItem from './ListItem';
 
 function Keycaps() {
-  //TODO: Show all keycaps items
-
-  const state = useSelector((state) => state.keycaps);
-  const redirect = useNavigate()
+  const [ keycapsState, savedState] = useSelector((state) => [state.keycaps, state.savedEntry]);
+  const { authUser } = useAuth();
+  const redirect = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const { keycapsData } = state
+
+  const { keycapsData } = keycapsState;
+  const { savedEntry } = savedState
 
   useEffect(() => {
+    // dispatch(getSavedEntry(authUser.uid));
+
     if (keycapsData.length <= 0) {
       console.log('test')
       dispatch(getKeycapsData());
@@ -44,7 +48,7 @@ function Keycaps() {
 
       {loading ? <div className="loading"></div> : null}
 
-      <ListItem data={keycapsData} />
+      <ListItem data={keycapsData} savedEntry={savedEntry}/>
     </div>
   )
 }

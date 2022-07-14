@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getKeyboardData } from "../../state/reducer/action";
+import { getKeyboardData, getSavedEntry } from "../../state/reducer/action";
 import '../../static/css/OutletCommon.scss'
+import { useAuth } from "../../utils/AuthProvider";
 import ListItem from "./ListItem";
 
 function Keyboard() {
   //acquire state from keyboard reducer with useSelector
-  const state = useSelector((state) => state.keyboard);
+  const [keyboardState, savedState] = useSelector((state) => [state.keyboard, state.savedEntry]);
+  const { authUser } = useAuth()
 
-  const redirect = useNavigate()
-
+  const redirect = useNavigate();
   const dispatch = useDispatch();
-
   const [loading, setLoading] = useState(true);
 
-  const { keyboardData } = state;
+  const { keyboardData } = keyboardState;
+  const { savedEntry } = savedState
 
   useEffect(() => {
     if (keyboardData.length <= 0) {
@@ -45,7 +46,7 @@ function Keyboard() {
 
       {loading ? <div className="loading"></div> : null}
 
-      <ListItem data={keyboardData}/>
+      <ListItem data={keyboardData} savedEntry={savedEntry}/>
     </div>
   );
 }

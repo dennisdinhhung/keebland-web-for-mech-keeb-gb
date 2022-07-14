@@ -1,11 +1,22 @@
-import { deleteDoc, doc } from 'firebase/firestore'
+import { deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import React from 'react'
-import { BsChevronDoubleRight } from 'react-icons/bs'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { BsChevronDoubleRight, BsBookmarkFill, BsBookmark } from 'react-icons/bs'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { setSavedEntry } from '../../state/reducer/action'
 import { db } from '../../utils/firebase-config'
 
-function ListItem({ data }) {
+function ListItem({ data, savedEntry }) {
+  // const savedState = useSelector((state) => state.savedEntry);
   const redirect = useNavigate()
+  const dispatch = useDispatch()
+  const [ saveIcon, setSaveIcon ] = useState(false)
+
+  useEffect(()=>{
+    
+  }, [])
 
   const daysLeft = (endDate) => {
     const currentDate = new Date()
@@ -24,6 +35,26 @@ function ListItem({ data }) {
     deleteDoc(itemDoc)
   }
 
+  const onSavedClick =  async (type, id) => {
+    //save id into appropriate type's list of the user
+    //update the firebase info
+    const isIncluded = savedEntry[type].includes(id)
+    const newList = isIncluded ? savedEntry[type].filter(item => item !== id) : [...savedEntry[type], id]
+
+    const newEntry = {...savedEntry, [type]: newList}
+    const editDoc = doc(db, 'savedEntry', savedEntry.id)
+    delete newEntry.id
+
+    await updateDoc(editDoc, newEntry)
+
+    dispatch(
+      setSavedEntry({
+        ...savedEntry,
+        [type]: newList
+      })
+    )
+  }
+
   return (
     <div className="center">
       <div className="list-item">
@@ -38,6 +69,14 @@ function ListItem({ data }) {
             <div className="info">
               <div className="name">{item.name}</div>
 
+              <div 
+                className="save-icon"
+                onClick={() => {
+                  onSavedClick(item.tag.type, item.id)
+                }}>
+                {savedEntry[item.tag.type].includes(item.id) ? <BsBookmarkFill/> : <BsBookmark/>} 
+                {/* //TODO: this should check the database to see if the item is saved */}
+              </div>
               <div className="tags">
                 <div className="tag">{item.tag.status}</div>
               </div>
