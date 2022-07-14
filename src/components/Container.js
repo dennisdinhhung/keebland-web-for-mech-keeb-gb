@@ -8,7 +8,6 @@ import EditKeyboard from './edit/EditKeyboard'
 import EditKeycaps from './edit/EditKeycaps'
 import EditSwitches from './edit/EditSwitches'
 import Home from './Home'
-import Login from './Login'
 import About from './menu/About'
 import Keyboard from './menu/Keyboard'
 import Keycaps from './menu/Keycaps'
@@ -18,7 +17,10 @@ import OutletContainer from './OutletContainer'
 import KeyboardInfo from './seeMore/KeyboardInfo'
 import KeycapsInfo from './seeMore/KeycapsInfo'
 import SwitchesInfo from './seeMore/SwitchesInfo'
-import SignUp from './SignUp'
+import SignUp from './AuthenPages/SignUp'
+import Login from './AuthenPages/Login'
+import Authentication from './AuthenPages/Authentication'
+import User from './User'
 
 function Container() {
   return (
@@ -33,8 +35,8 @@ function Container() {
                 <OutletContainer />
               </>
             }>
-            <Route path='login' element={<Login />} />
-            <Route path='signup' element={<SignUp />} />
+            <Route path='login' element={<Authentication />} />
+            <Route path='user' element={<User/>}/>
 
             <Route index element={<Home />} />
 
