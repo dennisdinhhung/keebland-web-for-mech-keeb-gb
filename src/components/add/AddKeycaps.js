@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setKeycapsState } from '../../state/reducer/action'
 import { db } from '../../utils/firebase-config'
-import { statusList } from '../statusList'
+import { statusList } from '../constants/statusList'
 
 function AddKeycaps() {
     const state = useSelector((state) => state.keycaps)

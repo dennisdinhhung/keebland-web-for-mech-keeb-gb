@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setKeyboardState } from '../../state/reducer/action';
 import { addDoc, collection, Timestamp } from 'firebase/firestore';
 import { db } from '../../utils/firebase-config';
-import { statusList } from '../statusList';
-import { typeList } from '../typeList';
+import { statusList } from '../constants/statusList';
+import { typeList } from '../constants/typeList';
 import '../../static/css/AddInfo.scss'
 
 function AddKeyboard() {

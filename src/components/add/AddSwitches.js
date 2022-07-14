@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setSwitchesState } from '../../state/reducer/action'
 import { db } from '../../utils/firebase-config'
-import { statusList } from '../statusList'
+import { statusList } from '../constants/statusList'
 
 function AddSwitches() {
   const state = useSelector((state) => state.switches)
