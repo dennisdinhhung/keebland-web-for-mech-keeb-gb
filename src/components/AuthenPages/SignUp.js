@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { BsPersonPlusFill } from 'react-icons/bs'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../utils/AuthProvider'
 
@@ -25,7 +26,7 @@ function SignUp() {
   }
 
   return (
-    <div className=''>
+    <div className='SignUp'>
       <div className="title">
         Sign Up
       </div>
@@ -66,7 +67,7 @@ function SignUp() {
 
           <button
             onClick={handleSubmit}>
-            Sign Up
+            <BsPersonPlusFill className='icon'/>Sign Up
           </button>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
-import { BsEye, BsEyeSlash } from 'react-icons/bs'
+import { BsBoxArrowInRight, BsEye, BsEyeSlash, BsGoogle } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { getAllSavedEntry } from '../../state/reducer/action';
@@ -23,40 +23,16 @@ function Login() {
 
   const [isPasswordVisible, setIsPassswordVisible] = useState(false)
   const [errorLogin, setErrorLogin] = useState();
-  const redirect = useNavigate()
   const { authUser, login } = useAuth()
 
   const changePasswordVisibility = () => {
     setIsPassswordVisible(!isPasswordVisible)
   }
 
-  const isIncluded = (uid) => {
-    console.log(allSavedEntry, 'all entry')
-    allSavedEntry.map((savedEntry) => {
-      console.log(savedEntry.uid, 'save uid')
-      if (savedEntry.uid === uid) {
-        return true
-      }
-    })
-
-    return false
-  }
-
   const signInWithGoogle = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         console.log(result, 'google result')
-        // dispatch(getAllSavedEntry())
-
-        // const isIncludes = isIncluded(result.uid)
-        // console.log(isIncludes, 'test')
-
-        // if (!isIncludes) {
-        //   // create new doc
-        //   console.log('create')
-        // }
-
-        // redirect('/')
       })
       .catch((error) => {
         console.log(error)
@@ -74,11 +50,6 @@ function Login() {
         username: '',
         password: ''
       })
-
-
-      // redirect('/')
-
-      // //TODO: check if the savedEntry for this user exists
     }
     catch (error) {
       setErrorLogin('Your username or password is incorrect.')
@@ -87,7 +58,7 @@ function Login() {
 
 
   return (
-    <div className=''>
+    <div className='Login'>
       <div className="title">
         Login
       </div>
@@ -123,12 +94,17 @@ function Login() {
 
         <button
           onClick={handleSubmit}>
-          Sign In
+          <BsBoxArrowInRight className='icon icon-signin'/>Sign In
         </button>
 
-        <div>or</div>
+        <div className='or'>or</div>
 
-        <button onClick={signInWithGoogle}>Sign in with Google</button>
+        <button 
+          className='google-btn'
+          onClick={signInWithGoogle}>
+          <BsGoogle className='icon'/>
+          Sign in with Google
+        </button>
       </div>
     </div>
   )
