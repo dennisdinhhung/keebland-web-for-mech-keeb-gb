@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BsPlusLg } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getKeyboardData, getSavedEntry } from "../../state/reducer/action";
@@ -31,10 +32,17 @@ function Keyboard() {
     <div className="Keyboard OutletCommon">
       <div className="title">Keyboards</div>
 
-      <button
+      {authUser ? (
+        <button
+        className="btn-add"
         onClick={() => {
           redirect("add")
-        }}>Add</button>
+        }}
+        >
+          <BsPlusLg className="icon"/>
+          Add
+      </button>
+      ) : ''}
 
       <div className="filter">
         <div className="title-filter">

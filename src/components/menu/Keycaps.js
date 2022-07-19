@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { BsPlusLg } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getKeycapsData, getSavedEntry } from '../../state/reducer/action';
@@ -33,10 +34,17 @@ function Keycaps() {
         Keycaps
       </div>
 
-      <button
-        onClick={() => redirect("add")}>
-        Add
+      {authUser ? (
+        <button
+        className="btn-add"
+        onClick={() => {
+          redirect("add")
+        }}
+        >
+          <BsPlusLg className="icon"/>
+          Add
       </button>
+      ) : ''}
 
       <div className="filter">
         <div className="title-filter">

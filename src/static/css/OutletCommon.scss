@@ -1,16 +1,44 @@
 @import "variables";
 
+.OutletContainer{
+  padding-top: 70px;
+}
+
 .OutletCommon {
-  margin-left: 175px;
   padding: 20px;
   color: $white;
 
   .title {
+    font-family: "Montserrat";
     font-size: 20px;
     margin-bottom: 20px;
   }
 
-  .loading{
+  .btn-add {
+    display: flex;
+    align-items: center;
+
+    border: none;
+    border-radius: 5px;
+    background-color: #37a73d;
+    color: $white;
+
+    padding: 5px;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 80%;
+    }
+
+    .icon {
+      margin-right: 5px;
+    }
+  }
+
+  .loading {
     display: flex;
     justify-content: center;
     margin-top: 15%;
@@ -42,6 +70,56 @@
     }
   }
 
+  .user-info {
+    background-color: $dark900;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+
+    display: flex;
+
+    .profile-img {
+      font-size: 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    .info {
+      margin-left: 20px;
+
+      .creation-time {
+        color: $dark500;
+      }
+
+      .btn-text {
+        display: flex;
+        align-items: center;
+
+        border: none;
+        background-color: transparent;
+        color: $white;
+        font-size: 16px;
+
+        margin: 5px 0px;
+        padding: 5px;
+        border-radius: 5px;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+
+        &:hover {
+          background-color: $white;
+          color: $dark900;
+        }
+
+        .logout-icon {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
   .list-item {
     display: grid;
     column-gap: 10px;
@@ -63,12 +141,15 @@
       .info {
         padding: 10px;
 
-        .name {
+        .div-name {
           font-size: 20px;
           font-weight: 600;
           margin-bottom: 10px;
           padding-bottom: 10px;
           border-bottom: 1px solid white;
+
+          display: flex;
+          justify-content: space-between;
         }
 
         .tags {
@@ -113,6 +194,49 @@
           &:hover {
             background-color: $white;
             color: $dark900;
+          }
+        }
+
+        .admin-btns {
+          margin-top: 10px;
+          display: flex;
+          flex-wrap: wrap;
+
+          .btn-edit {
+            display: flex;
+            align-items: center;
+
+            border: none;
+            border-radius: 5px;
+            background-color: $white;
+            padding: 5px;
+            margin-right: 5px;
+
+            transition: 0.3s;
+          }
+
+          .btn-del {
+            display: flex;
+            align-items: center;
+
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(223, 44, 44);
+            color: $white;
+            padding: 5px;
+            margin-right: 5px;
+
+            transition: 0.3s;
+          }
+
+          button:hover {
+            opacity: 65%;
+          }
+
+          button {
+            .icon {
+              margin-right: 5px;
+            }
           }
         }
       }

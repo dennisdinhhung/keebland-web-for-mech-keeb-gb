@@ -14,9 +14,31 @@
     align-items: center;
     width: 100%;
 
-    // position: fixed;
-    // z-index: 2;
+    position: fixed;
+    z-index: 2;
 
+    .btn-menu{
+        border: none;
+        background-color: transparent;
+        border-radius: 5px;
+
+        transition: 0.3s;
+
+        padding: 5px;
+
+        .icon{
+            font-size: 24px;
+            color: $white;
+        }
+
+        &:hover{
+            background-color: $white;
+            
+            .icon{
+                color: $dark900;
+            }
+        }
+    }
     
 
     .logo{
@@ -56,6 +78,14 @@
             &:hover{
                 opacity: 80%;
             }
+        }
+
+        .icon-person{
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+
+            cursor: pointer;
         }
     }
 }

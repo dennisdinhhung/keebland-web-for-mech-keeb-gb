@@ -9,6 +9,11 @@
 
     padding-top: 20px;
 
+    transition: 0.2s;
+
+    top: 0;
+    z-index: 10;
+
     button{
         display: flex;
         align-items: center;
@@ -44,4 +49,40 @@
     .active-nav:hover{
         background-color: $dark600;
     }
+
+    .collapse-btn{
+        display: flex;
+        align-items: center;
+
+        width: auto;
+
+        border-radius: 5px;
+        padding: 5px;
+
+        font-size: 24px;
+
+        transition: 0.3s;
+
+        margin-left: 10px;
+        margin-bottom: 10px;
+
+        &:hover{
+            background-color: $white;
+            color: $dark900;
+        }
+    }
+}
+
+.menu-off{
+    left: -100%;
+}
+
+.menu-on{
+    left: 0;
+}
+
+.dark-bg{
+    width: 100%;
+    background-color: black;
+    opacity: 75%;
 }

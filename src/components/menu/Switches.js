@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getSavedEntry, getSwitchesData } from '../../state/reducer/action'
 import { useAuth } from '../../utils/AuthProvider'
+import { BsPlusLg } from "react-icons/bs";
 import ListItem from './ListItem'
 
 function Switches() {
@@ -33,10 +34,17 @@ function Switches() {
         Switches
       </div>
 
-      <button
+      {authUser ? (
+        <button
+        className="btn-add"
         onClick={() => {
           redirect("add")
-        }}>Add</button>
+        }}
+        >
+          <BsPlusLg className="icon"/>
+          Add
+      </button>
+      ) : ''}
 
       <div className="filter">
         <div className="title-filter">

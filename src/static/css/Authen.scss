@@ -1,0 +1,131 @@
+@import "variables";
+
+.Authen {
+  display: flex;
+  justify-content: space-evenly;
+
+  .Login {
+    margin: 0px 10px;
+    .form {
+      input {
+        border-radius: 7px;
+        padding: 5px;
+        padding-left: 10px;
+        margin-bottom: 5px;
+
+        width: 200px;
+
+        border: none;
+        outline: none;
+
+        font-size: 16px;
+      }
+
+      .div-input {
+        position: relative;
+        margin-bottom: 10px;
+
+        .icon-eye {
+          position: absolute;
+          top: 12%;
+          right: 10px;
+
+          font-size: 20px;
+
+          color: $dark900;
+        }
+      }
+
+      .or{
+        display: flex;
+        justify-content: center;
+
+        margin: 5px 0px;
+      }
+
+      button{
+        width: 200px;
+        font-size: 16px;
+
+        border: none;
+        border-radius: 5px;
+        background-color: $dark700;
+        color: $white;
+
+        padding: 7px;
+
+        transition: 0.3s;
+
+        &:hover{
+          background-color: $white;
+          color: $dark900;
+        }
+
+          display: flex;
+          justify-content: center;
+          
+          .icon{
+            align-items: center;
+            margin-right: 5px;
+          }
+
+        .icon-signin{
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  .SignUp {
+    margin: 0px 10px;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        border-radius: 7px;
+        padding: 5px;
+        padding-left: 10px;
+        margin-bottom: 5px;
+
+        width: 200px;
+
+        border: none;
+        outline: none;
+
+        font-size: 16px;
+      }
+
+      button{
+        margin-top: 10px;
+
+        width: 200px;
+        font-size: 16px;
+
+        border: none;
+        border-radius: 5px;
+        background-color: $dark700;
+        color: $white;
+
+        padding: 7px;
+
+        transition: 0.3s;
+
+        &:hover{
+          background-color: $white;
+          color: $dark900;
+        }
+
+        display: flex;
+        justify-content: center;
+        
+        .icon{
+          align-items: center;
+          margin-right: 5px;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
