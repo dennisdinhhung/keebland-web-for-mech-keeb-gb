@@ -1,21 +1,50 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BsHouseDoorFill, BsHouseDoor, BsKeyboardFill, BsKeyboard, BsToggleOn, BsToggleOff, BsInfoCircle , BsInfoCircleFill} from 'react-icons/bs'
+import { BsHouseDoorFill, BsHouseDoor, BsKeyboardFill, BsKeyboard, BsToggleOn, BsToggleOff, BsInfoCircle , BsInfoCircleFill, BsArrowLeft} from 'react-icons/bs'
 import { FaKeyboard, FaRegKeyboard } from 'react-icons/fa'
 import { MdKeyboardReturn } from 'react-icons/md'
 import '../static/css/Menu.scss'
 
-function Menu() {
+function Menu({activateSideBar, setSideBar, sidebar}) {
     const redirect = useNavigate()
+    const MenuRef = useRef()
 
     const [activeBtn, setActiveBtn] = useState();
 
     useEffect(() => {
         setActiveBtn(window.location.pathname)
-    })
+    })  
+
+    // useEffect(() => {
+    //     // click outside function
+    //     let handler = (event) => {
+    //       if (!MenuRef.current.contains(event.target)) {
+    //         setSideBar(false)
+    //       }
+    //     }
+    
+    //     document.addEventListener("click", handler)
+    
+    //     return () => {
+    //       document.removeEventListener("click", handler)
+    //     }
+    //   })
+
+    const collapseSideBar = () => {
+        activateSideBar()
+    }
 
     return (
-        <div className='Menu'>
+        <div 
+        className={sidebar ? "Menu menu-on" : "Menu menu-off"}
+        ref={MenuRef}>
+            <button
+                className='collapse-btn'
+                onClick={collapseSideBar}
+                >
+                    <BsArrowLeft className='icon'/>
+            </button>
+
             <button
             className={activeBtn === '/' ? 'active-nav' : 'inactive-nav'}
                 onClick={() => {
