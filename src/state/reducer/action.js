@@ -229,6 +229,6 @@ export const getAllSavedEntry = () => {
         const data = await getDocs(collectionRef)
         const fullData = data.docs.map((doc) => ({...doc.data(), id: doc.id}))
 
-        dispatch(setAllSavedEntry(fullData))
+        dispatch(setAllSavedEntry(fullData)) 
     }
 }

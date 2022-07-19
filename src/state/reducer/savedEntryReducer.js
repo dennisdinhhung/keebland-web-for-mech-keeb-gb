@@ -3,9 +3,9 @@ import { ACTIONS } from "./action"
 const initialState = {
   savedEntry: {
     uid: '',
-    keyboards: '',
-    keycaps: '',
-    switches: ''
+    keyboards: [],
+    keycaps: [],
+    switches: []
   },
   allSavedEntry: []
 }
